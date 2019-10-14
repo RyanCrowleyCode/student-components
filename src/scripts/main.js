@@ -75,31 +75,48 @@ const students = [
 
 let passFail
 
-const createStudentComponent = (name, subject, info, score) => {
-    if (score >= 60) {
+// createStudentComponent function using 4 arguments
+// const createStudentComponent = (name, subject, info, score) => {
+//     if (score >= 60) {
+//         passFail = "passing"
+//     } else {
+//         passFail = "failing"
+//     }
+//     return `
+//         <div class="student">
+//             <h1 class="xx-large ${passFail}">${name}</h1>
+//             <section class="bordered dashed section--padded">${subject}</section>
+//             <aside class="pushRight">${info}</aside>
+//         </div>
+//     `
+// }
+
+// Instead of defining four arguments for the createStudentComponent function, and then passing the individual properties when it is invoked, refactor the function to accept the entire object as a single argument.
+const createStudentComponent = (student) => {
+    if (student.score >= 60) {
         passFail = "passing"
     } else {
         passFail = "failing"
     }
     return `
         <div class="student">
-            <h1 class="xx-large ${passFail}">${name}</h1>
-            <section class="bordered dashed section--padded">${subject}</section>
-            <aside class="pushRight">${info}</aside>
+            <h1 class="xx-large ${passFail}">${student.name}</h1>
+            <section class="bordered dashed section--padded">${student.subject}</section>
+            <aside class="pushRight">${student.info}</aside>
         </div>
     `
 }
+
+// Then refactor your string interpolation code to use the object properties.
 
 const studentContainer = document.querySelector("#container")
 
 for (let i = 0; i < students.length; i++) {
     const student = students[i]
     studentContainer.innerHTML += createStudentComponent(
-        student.name,
-        student.subject,
-        student.info,
-        student.score
+        student
     )
 }
 
-// Iterate the array of students, and apply the correct style to the h1 depending on the score of the student being below 60, or above it.
+
+
