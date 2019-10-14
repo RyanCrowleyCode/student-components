@@ -75,7 +75,7 @@ const students = [
 
 let passFail
 
-// createStudentComponent function using 4 arguments
+//// FIRST PART OF PRACTICE: createStudentComponent function using 4 arguments
 // const createStudentComponent = (name, subject, info, score) => {
 //     if (score >= 60) {
 //         passFail = "passing"
@@ -91,18 +91,23 @@ let passFail
 //     `
 // }
 
-// Instead of defining four arguments for the createStudentComponent function, and then passing the individual properties when it is invoked, refactor the function to accept the entire object as a single argument.
+
+const createElement = (tag, content, className) => {
+    return `<${tag} class="${className}">${content}</${tag}>`
+}
+
 const createStudentComponent = (student) => {
     if (student.score >= 60) {
         passFail = "passing"
     } else {
         passFail = "failing"
     }
+
     return `
-        <div class="student">
-            <h1 class="xx-large ${passFail}">${student.name}</h1>
-            <section class="bordered dashed section--padded">${student.subject}</section>
-            <aside class="pushRight">${student.info}</aside>
+        <div id="student">
+            ${createElement("h1", student.name, `xx-large ${passFail}`)}
+            ${createElement("section", student.subject, "bordered dashed section--padded")}
+            ${createElement("aside", student.info, "pushRight")}
         </div>
     `
 }
